@@ -489,14 +489,6 @@ const SimpleApp = () => {
 
   // Gallery Section
   const Gallery = () => {
-    const previewPhotos = [
-      { id: 1, src: require('./utils/Aguila.webp'), category: 'naturaleza' },
-      { id: 2, src: require('./utils/ana1.webp'), category: 'retrato' },
-      { id: 3, src: require('./utils/cafe2.webp'), category: 'wallpaper' },
-      { id: 4, src: require('./utils/Cocina.webp'), category: 'inmobiliaria' },
-      { id: 5, src: require('./utils/elefante1.webp'), category: 'naturaleza' },
-      { id: 6, src: require('./utils/bailarina.webp'), category: 'retrato' }
-    ];
 
     return (
       <section style={styles.section}>
