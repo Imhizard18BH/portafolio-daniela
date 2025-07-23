@@ -707,7 +707,7 @@ const SimpleApp = () => {
       { id: 303, src: require('./utils/Foto1.webp'), category: 'inmobiliaria', title: 'Interior Moderno' },
       { id: 304, src: require('./utils/Foto13.webp'), category: 'inmobiliaria', title: 'Espacio Elegante' },
       { id: 305, src: require('./utils/Piscina .webp'), category: 'inmobiliaria', title: 'Piscina' },
-      { id: 306, src: require('./utils/Video belmonte  (1).MOV'), category: 'inmobiliaria', title: 'Sala Moderna', type : 'video'},
+      { id: 306, src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753304742/Video_belmonte_1_l2cxoy.mov', category: 'inmobiliaria', title: 'Sala Moderna', type : 'video'},
 
       // WALLPAPER
       { id: 401, src: require('./utils/ciclista.webp'), category: 'wallpaper', title: 'Ciclista' },
@@ -798,8 +798,9 @@ const SimpleApp = () => {
                       height: '100%',
                       objectFit: 'cover' as const
                     }}
-                    controls
-                    preload="metadata"
+                      controls
+                      preload="metadata"
+                      playsInline
                   >
                     <source src={item.src} type="video/mp4" />
                   </video>
@@ -832,24 +833,6 @@ const SimpleApp = () => {
                       transition: 'transform 0.3s ease'
                     }}
                   >
-                    <h4 style={{ 
-                      margin: '0 0 0.5rem 0', 
-                      fontSize: isMobile ? '1rem' : '1.1rem',
-                      fontWeight: 600
-                    }}>
-                      {item.title}
-                    </h4>
-                    
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      fontSize: '0.85rem',
-                      opacity: 0.9
-                    }}>
-                      <span>Inmobiliaria</span>
-                      <span>📹</span>
-                    </div>
                   </div>
                 </div>
               ) : (
@@ -1415,45 +1398,54 @@ return (
     };
 
     // UGC Page
-    const UGCPage = () => {
-      const ugcContent = [
-        {
-          id: 1,
-          src: require('./utils/TODOS BLACK.mp4'),
-          title: 'TODOS BLACK',
-          type: 'video',
-        },
-        {
-          id: 3,
-          src: require('./utils/MASAJEADOR FRIO CALOR 2.mp4'),
-          title: 'Masajeador Frío Calor',
-          type: 'video',
-        },
-        {
-          id: 4,
-          src: require('./utils/Luces para bicicleta 3.mp4'),
-          title: 'Luces para Bicicleta',
-          type: 'video',
-        },
-        {
-          id: 5,
-          src: require('./utils/Lápiz láser facialb 2.mp4'),
-          title: 'Lápiz Láser Facial',
-          type: 'video',
-        },
-        {
-          id: 6,
-          src: require('./utils/Juguete pista de carros 3.mp4'),
-          title: 'Juguete Pista de Carros',
-          type: 'video',
-        },
-        {
-          id: 7,
-          src: require('./utils/Glucometro 1.mp4'),
-          title: 'Glucómetro',
-          type: 'video',
-        }
-      ];
+     // UGC Page
+  const UGCPage = () => {
+    const ugcContent = [
+      {
+        id: 1,
+        src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753301322/TODOS_BLACK_wzc84j.mp4',
+        title: 'TODOS BLACK',
+        type: 'video',
+      },
+      {
+        id: 3,
+        src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753301309/MASAJEADOR_FRIO_CALOR_2_g01jjp.mp4',
+        title: 'Masajeador Frío Calor',
+        type: 'video',
+      },
+      {
+        id: 4,
+        src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753302027/Luces_para_bicicleta_3_converted_skdhji.mp4',
+        title: 'Luces para Bicicleta',
+        type: 'video',
+      },
+      {
+        id: 5,
+        src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753301308/L%C3%A1piz_l%C3%A1ser_facialb_2_qzckk0.mp4',
+        title: 'Lápiz Láser Facial',
+        type: 'video',
+      },
+      {
+        id: 6,
+        src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753301322/Juguete_pista_de_carros_3_xjjzj4.mp4',
+        title: 'Juguete Pista de Carros',
+        type: 'video',
+      },
+      {
+        id: 7,
+        src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753301323/Glucometro_1_nikgna.mp4',
+        title: 'Glucómetro',
+        type: 'video',
+      },
+      {
+        id: 8,
+        src: 'https://res.cloudinary.com/dy4gf9krq/video/upload/v1753301302/Molino_de_caf%C3%A92_wfaxgo.mov',
+        title: 'Molino de Café',
+        type: 'video',
+      }
+    ];
+    
+    // ...existing code...
 
       const getUGCGridStyle = () => {
         if (isMobile) {
@@ -1505,6 +1497,7 @@ return (
                     boxShadow: '0 12px 35px rgba(0, 0, 0, 0.15)'
                   }}
                 >
+                  
                   <div style={{ 
                     position: 'relative',
                     height: '100%',
@@ -1520,8 +1513,8 @@ return (
                       preload="metadata"
                       playsInline // Importante para iOS
                       webkit-playsinline="true" // Para compatibilidad con Safari
-                      muted
-                      controlsList="nodownload" // Opcional: ocultar opción de descarga
+                      muted={false}
+                      controlsList="nodownload nofullscreen" // Opcional: ocultar opción de descarga
                     >
                       <source src={content.src} type="video/mp4" />
                       Tu navegador no soporta la reproducción de videos.
@@ -1536,25 +1529,6 @@ return (
                       color: 'white',
                       padding: isMobile ? '1rem' : '1.25rem'
                     }}>
-                      <h3 style={{
-                        fontSize: isMobile ? '1rem' : '1.1rem',
-                        fontWeight: 600,
-                        marginBottom: '0.5rem',
-                        margin: '0 0 0.5rem 0'
-                      }}>
-                        {content.title}
-                      </h3>
-                      
-                      <div style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        fontSize: '0.85rem',
-                        opacity: 0.9
-                      }}>
-                        <span>UGC Content</span>
-                        <span>📱</span>
-                      </div>
                     </div>
                   </div>
                 </motion.div>
