@@ -440,7 +440,7 @@ const SimpleApp = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          Daniela Ángel
+          Daniela Angel
         </motion.h1>
         
         <motion.p 
