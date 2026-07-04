@@ -1,17 +1,21 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   ArrowRight,
+  ArrowUpRight,
   Award,
   Briefcase,
   Camera,
+  ChevronDown,
   Eye,
   Facebook,
+  FileText,
   Film,
   Flame,
   Image as ImageIcon,
   Instagram,
   Megaphone,
+  Newspaper,
   Sparkles,
   TrendingUp,
   Users
@@ -28,8 +32,10 @@ import {
 } from '../../styles/theme';
 import { IGEmbed } from '../shared/IGEmbed';
 import {
+  alcaldiaBoletinUrl,
   alcaldiaFeaturedPosts,
   alcaldiaLogros,
+  alcaldiaNotes,
   consejoLogros,
   consejoMonthlyMetrics,
   consejoStats,
@@ -39,6 +45,7 @@ import {
   doncelMonthlyMetrics,
   doncelStats,
   MonthlyMetric,
+  NewsArticle,
   recognitions,
   Stat,
   viralReels
@@ -221,6 +228,330 @@ const MonthCard: React.FC<{ metric: MonthlyMetric; isMobile: boolean; index: num
     </div>
   </motion.div>
 );
+
+const NotasCarouselDesktop: React.FC<{ notes: NewsArticle[]; indexUrl: string }> = ({
+  notes,
+  indexUrl
+}) => (
+  <div style={{ position: 'relative' }}>
+    <div
+      className="notas-scroll"
+      style={{
+        display: 'flex',
+        gap: '1rem',
+        overflowX: 'auto',
+        overflowY: 'visible',
+        scrollSnapType: 'x mandatory',
+        WebkitOverflowScrolling: 'touch',
+        paddingTop: '0.75rem',
+        paddingBottom: '1rem',
+        paddingLeft: '0.25rem',
+        paddingRight: '0.25rem'
+      }}
+    >
+      {notes.map((note, i) => {
+        const tilt = i % 3 === 0 ? -1.8 : i % 3 === 1 ? 1.2 : -0.8;
+        return (
+          <motion.a
+            key={i}
+            href={note.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ duration: 0.3, delay: (i % 5) * 0.05 }}
+            whileHover={{
+              rotate: 0,
+              y: -6,
+              scale: 1.03,
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15)',
+              zIndex: 10
+            }}
+            style={{
+              flexShrink: 0,
+              width: '240px',
+              minHeight: '170px',
+              padding: '1rem 1.15rem 1.15rem',
+              background: 'white',
+              border: `1px solid ${colors.border}`,
+              borderTop: `3px solid ${note.color}`,
+              borderRadius: '0.85rem',
+              textDecoration: 'none',
+              color: colors.text,
+              scrollSnapAlign: 'start',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.6rem',
+              boxShadow: '0 6px 16px rgba(0, 0, 0, 0.06)',
+              transform: `rotate(${tilt}deg)`,
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+            }}
+          >
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.3rem',
+                alignSelf: 'flex-start',
+                background: `${note.color}18`,
+                color: note.color,
+                padding: '0.2rem 0.55rem',
+                borderRadius: '2rem',
+                fontSize: '0.6rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '0.06em'
+              }}
+            >
+              <FileText size={9} />
+              {note.category}
+            </div>
+            <h5
+              style={{
+                fontSize: '0.9rem',
+                fontWeight: 700,
+                margin: 0,
+                lineHeight: 1.35,
+                color: colors.text,
+                flex: 1
+              }}
+            >
+              {note.title}
+            </h5>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.3rem',
+                color: note.color,
+                fontSize: '0.72rem',
+                fontWeight: 800,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em'
+              }}
+            >
+              Leer nota
+              <ArrowUpRight size={12} />
+            </div>
+          </motion.a>
+        );
+      })}
+
+      {/* Terminal card: boletín */}
+      <motion.a
+        href={indexUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        whileHover={{ scale: 1.03, y: -4, boxShadow: '0 20px 40px rgba(102, 126, 234, 0.3)' }}
+        style={{
+          flexShrink: 0,
+          width: '240px',
+          minHeight: '170px',
+          padding: '1rem',
+          background: 'linear-gradient(135deg, #f59e0b 0%, #10b981 100%)',
+          border: 'none',
+          borderRadius: '0.85rem',
+          textDecoration: 'none',
+          color: 'white',
+          scrollSnapAlign: 'start',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '0.65rem',
+          boxShadow: '0 6px 16px rgba(0, 0, 0, 0.15)',
+          transition: 'all 0.3s ease'
+        }}
+      >
+        <Newspaper size={36} />
+        <div style={{ fontSize: '0.95rem', fontWeight: 800, textAlign: 'center', lineHeight: 1.2 }}>
+          Ver boletín completo
+        </div>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.3rem',
+            fontSize: '0.7rem',
+            fontWeight: 700,
+            opacity: 0.9
+          }}
+        >
+          {notes.length}+ notas escritas
+          <ArrowRight size={12} />
+        </div>
+      </motion.a>
+    </div>
+
+    {/* Fade edge right */}
+    <div
+      aria-hidden
+      style={{
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        bottom: 0,
+        width: '80px',
+        background: 'linear-gradient(to left, rgba(255,255,255,0.9), transparent)',
+        pointerEvents: 'none',
+        borderRadius: '0 0.85rem 0.85rem 0'
+      }}
+    />
+  </div>
+);
+
+const NotasMobileCard: React.FC<{ notes: NewsArticle[]; indexUrl: string }> = ({
+  notes,
+  indexUrl
+}) => {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div
+      style={{
+        background: 'white',
+        border: `1px solid ${colors.border}`,
+        borderRadius: '1rem',
+        overflow: 'hidden',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)'
+      }}
+    >
+      <button
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.85rem',
+          width: '100%',
+          padding: '1rem',
+          background:
+            'linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%)',
+          border: 'none',
+          cursor: 'pointer',
+          textAlign: 'left'
+        }}
+      >
+        <div
+          style={{
+            width: '44px',
+            height: '44px',
+            borderRadius: '12px',
+            background: 'linear-gradient(135deg, #f59e0b 0%, #10b981 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0
+          }}
+        >
+          <Newspaper size={22} color="white" />
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div
+            style={{
+              fontSize: '0.65rem',
+              color: '#d97706',
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
+            }}
+          >
+            {notes.length} notas escritas
+          </div>
+          <div style={{ fontSize: '0.9rem', fontWeight: 800, color: colors.text, marginTop: '0.15rem' }}>
+            Boletín de la Alcaldía
+          </div>
+        </div>
+        <motion.div animate={{ rotate: expanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+          <ChevronDown size={20} color={colors.textMuted} />
+        </motion.div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {expanded && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div style={{ padding: '0.5rem 0.75rem 0.85rem' }}>
+              {notes.map((note, i) => (
+                <a
+                  key={i}
+                  href={note.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.65rem',
+                    padding: '0.7rem 0.5rem',
+                    textDecoration: 'none',
+                    color: colors.text,
+                    borderBottom: i < notes.length - 1 ? `1px solid ${colors.border}` : 'none'
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '7px',
+                      height: '7px',
+                      borderRadius: '50%',
+                      background: note.color,
+                      marginTop: '0.5rem',
+                      flexShrink: 0
+                    }}
+                  />
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div
+                      style={{
+                        fontSize: '0.6rem',
+                        color: note.color,
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        marginBottom: '0.15rem'
+                      }}
+                    >
+                      {note.category}
+                    </div>
+                    <div style={{ fontSize: '0.82rem', lineHeight: 1.35, fontWeight: 500 }}>
+                      {note.title}
+                    </div>
+                  </div>
+                  <ArrowUpRight size={14} color={colors.textMuted} style={{ marginTop: '0.2rem', flexShrink: 0 }} />
+                </a>
+              ))}
+              <a
+                href={indexUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.4rem',
+                  padding: '0.85rem',
+                  marginTop: '0.75rem',
+                  background: 'linear-gradient(135deg, #f59e0b 0%, #10b981 100%)',
+                  color: 'white',
+                  fontWeight: 700,
+                  fontSize: '0.85rem',
+                  borderRadius: '0.65rem',
+                  textDecoration: 'none'
+                }}
+              >
+                Ver boletín completo
+                <ArrowRight size={14} />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+};
 
 const LogrosList: React.FC<{ logros: string[]; isMobile: boolean }> = ({ logros, isMobile }) => (
   <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0' }}>
@@ -419,9 +750,10 @@ export const ExperiencePage: React.FC = () => {
             </h4>
             <div
               style={{
-                display: 'flex',
+                display: 'grid',
                 gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: isMobile ? '1.25rem' : '1.5rem'
+                gap: isMobile ? '1.25rem' : '1.5rem',
+                marginBottom: '2rem'
               }}
             >
               {alcaldiaFeaturedPosts.map((url, i) => (
@@ -436,6 +768,38 @@ export const ExperiencePage: React.FC = () => {
                 </motion.div>
               ))}
             </div>
+
+            {/* Notas escritas para el municipio */}
+            <h4
+              style={{
+                fontSize: isMobile ? '1rem' : '1.15rem',
+                fontWeight: 700,
+                color: colors.text,
+                margin: '0 0 0.5rem 0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              <Newspaper size={18} color="#f59e0b" />
+              Notas escritas para el municipio
+            </h4>
+            <p
+              style={{
+                color: colors.textMuted,
+                fontSize: isMobile ? '0.85rem' : '0.9rem',
+                margin: '0 0 1rem 0',
+                lineHeight: 1.5
+              }}
+            >
+              Redacción y publicación de {alcaldiaNotes.length}+ boletines informativos oficiales sobre las
+              acciones, campañas y proyectos de la Alcaldía de Calarcá.
+            </p>
+            {isMobile ? (
+              <NotasMobileCard notes={alcaldiaNotes} indexUrl={alcaldiaBoletinUrl} />
+            ) : (
+              <NotasCarouselDesktop notes={alcaldiaNotes} indexUrl={alcaldiaBoletinUrl} />
+            )}
           </div>
         </motion.div>
 

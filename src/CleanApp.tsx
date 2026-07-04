@@ -43,7 +43,10 @@ const Portfolio: React.FC = () => {
       default:
         return (
           <>
-            <Hero onCtaClick={() => setActiveSection('photography')} />
+            <Hero
+              onCtaClick={() => setActiveSection('photography')}
+              onContactClick={() => setActiveSection('contact')}
+            />
             <Gallery onNavigate={setActiveSection} />
           </>
         );
