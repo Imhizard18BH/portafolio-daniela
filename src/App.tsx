@@ -1,9 +1,6 @@
 import React from 'react';
-import CleanApp from './CleanApp';
-import './App.css';
+import Portfolio from './CleanApp';
 
-function App() {
-  return <CleanApp />;
-}
+const App: React.FC = () => <Portfolio />;
 
 export default App;

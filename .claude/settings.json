@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"c:\\\\Users\\\\Brahyam\\\\Documents\\\\portafolio-daniela\")",
+      "Bash(dir \"c:\\\\Users\\\\Brahyam\\\\Documents\\\\portafolio-daniela\\\\src\")",
+      "Bash(dir \"c:\\\\Users\\\\Brahyam\\\\Documents\\\\portafolio-daniela\\\\public\")",
+      "Bash(dir \"c:\\\\Users\\\\Brahyam\\\\Documents\\\\portafolio-daniela\\\\src\\\\utils\")",
+      "Bash(dir \"c:\\\\Users\\\\Brahyam\\\\Documents\\\\portafolio-daniela\\\\src\\\\types\")",
+      "Bash(del src\\\\App.css src\\\\index_clean.css postcss.config.clean.js src\\\\types\\\\mui.d.ts)",
+      "Bash(rmdir src\\\\types)",
+      "Bash(rm -f src/App.css src/index_clean.css postcss.config.clean.js src/types/mui.d.ts)",
+      "Bash(rmdir src/types)",
+      "Bash(npm start *)"
+    ]
+  }
+}
