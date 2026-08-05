@@ -27,9 +27,9 @@ export const consejoVideos: IGVideoRef[] = [
 ];
 
 export const consejoStats: Stat[] = [
-  { label: 'Views totales', value: '85K+', hint: 'Enero → Junio 2026' },
-  { label: 'Nuevos seguidores', value: '+81', hint: 'desde diciembre' },
-  { label: 'Contenido publicado', value: '60+', hint: '19 reels · 41 posts' },
+  { label: 'Views totales', value: '107K+', hint: 'Enero → Julio 2026' },
+  { label: 'Nuevos seguidores', value: '+103', hint: 'desde diciembre' },
+  { label: 'Contenido publicado', value: '70+', hint: '23 reels · 45 posts' },
   { label: 'Alcance no-seguidores', value: 'hasta 75%', hint: 'de las views' }
 ];
 
@@ -120,6 +120,21 @@ export const consejoMonthlyMetrics: MonthlyMetric[] = [
     followersGrowthLabel: 'vs. mayo',
     reels: 6,
     posts: 8
+  },
+  {
+    month: 'Julio',
+    year: 2026,
+    views: '22K',
+    viewsGrowth: '+9%',
+    viewsGrowthLabel: 'vs. junio',
+    nonFollowerViews: '62%',
+    nonFollowerViewsGrowth: '+35%',
+    nonFollowerViewsGrowthLabel: 'vs. junio',
+    followers: 997,
+    followersGrowth: 22,
+    followersGrowthLabel: 'vs. junio',
+    reels: 4,
+    posts: 4
   }
 ];
 
@@ -136,9 +151,9 @@ export const viralReels: string[] = [
 ];
 
 export const doncelStats: Stat[] = [
-  { label: 'Views totales', value: '67K+', hint: 'Enero → Junio 2026' },
-  { label: 'Nuevos seguidores', value: '+27', hint: 'desde diciembre' },
-  { label: 'Contenido publicado', value: '31', hint: '18 reels · 13 posts' },
+  { label: 'Views totales', value: '96K+', hint: 'Enero → Julio 2026' },
+  { label: 'Nuevos seguidores', value: '+29', hint: 'desde diciembre' },
+  { label: 'Contenido publicado', value: '36', hint: '21 reels · 15 posts' },
   { label: 'Alcance no-seguidores', value: 'hasta 56%', hint: 'de las views' }
 ];
 
@@ -224,7 +239,26 @@ export const doncelMonthlyMetrics: MonthlyMetric[] = [
     followersGrowthLabel: 'vs. mayo',
     reels: 5,
     posts: 2
+  },
+  {
+    month: 'Julio',
+    year: 2026,
+    views: '29K',
+    viewsGrowth: '+14%',
+    viewsGrowthLabel: 'vs. junio',
+    nonFollowerViews: '40%',
+    nonFollowerViewsGrowth: '+52%',
+    nonFollowerViewsGrowthLabel: 'vs. junio',
+    followers: 2102,
+    followersGrowth: 2,
+    followersGrowthLabel: 'vs. junio',
+    reels: 3,
+    posts: 2
   }
+];
+
+export const doncelViralReels: string[] = [
+  'https://www.instagram.com/p/Da8TgwClgFU/'
 ];
 
 export const doncelFeaturedPosts: string[] = [

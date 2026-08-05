@@ -44,6 +44,7 @@ import {
   doncelLogros,
   doncelMonthlyMetrics,
   doncelStats,
+  doncelViralReels,
   MonthlyMetric,
   NewsArticle,
   recognitions,
@@ -1222,6 +1223,73 @@ export const ExperiencePage: React.FC = () => {
               Logros y responsabilidades
             </h4>
             <LogrosList logros={doncelLogros} isMobile={isMobile} />
+
+            {/* Reels más virales de Jhonatan */}
+            <h4
+              style={{
+                fontSize: isMobile ? '1rem' : '1.15rem',
+                fontWeight: 700,
+                color: colors.text,
+                margin: '0 0 1rem 0',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}
+            >
+              <Flame size={18} color="#ef4444" />
+              Reels más virales
+            </h4>
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+                gap: isMobile ? '1.25rem' : '1.5rem',
+                marginBottom: '1.75rem'
+              }}
+            >
+              {doncelViralReels.map((url, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  style={{
+                    position: 'relative',
+                    flex: isMobile ? '1 1 100%' : '1 1 320px',
+                    maxWidth: isMobile ? '100%' : '400px'
+                  }}
+                >
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '-0.6rem',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      background: 'linear-gradient(135deg, #ef4444 0%, #f59e0b 100%)',
+                      color: 'white',
+                      padding: '0.25rem 0.85rem',
+                      borderRadius: '1rem',
+                      fontSize: '0.7rem',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      zIndex: 2,
+                      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+                      whiteSpace: 'nowrap',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.3rem'
+                    }}
+                  >
+                    <Flame size={12} />
+                    Viral · Julio
+                  </div>
+                  <IGEmbed embedUrl={`${url}embed/`} />
+                </motion.div>
+              ))}
+            </div>
 
             {/* Publicaciones destacadas de Jhonatan */}
             <h4
